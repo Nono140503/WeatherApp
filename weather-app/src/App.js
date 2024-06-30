@@ -8,7 +8,7 @@ function App() {
   const [location, setLocation] = useState("");
 
   const apiKey = process.env.REACT_APP_API_KEY;
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&APPID=${apiKey}`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}`;
 
   const searchLocation = (event) => {
     if (event.key === "Enter") {
@@ -16,8 +16,10 @@ function App() {
       axios.get(url).then((response) => {
         setData(response.data);
         console.log(response.data);
+        console.log('API Key:', process.env.REACT_APP_API_KEY); 
       }).catch(error => {
         console.error("Error fetching the weather data:", error);
+        console.log('API Key:', process.env.REACT_APP_API_KEY); 
       });
       setLocation("");
     }
